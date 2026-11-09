@@ -1,0 +1,14 @@
+.event-card {
+    border: solid 1px black;
+    margin: 10px;
+    padding: 10px;
+}
+
+#game-window {
+    border: solid 1px red;
+    height: 800px;
+}
+
+.hidden {
+    visibility: hidden;
+}
