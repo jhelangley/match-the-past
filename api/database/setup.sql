@@ -5,6 +5,7 @@ CREATE TABLE user_table(
     user_id INT GENERATED ALWAYS AS IDENTITY,
     username VARCHAR (30) UNIQUE NOT NULL,
     password CHAR(60) NOT NULL,
+    is_admin BOOLEAN DEFAULT FALSE,
     current_score INT DEFAULT 0,
     PRIMARY KEY(user_id)
 );
