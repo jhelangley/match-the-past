@@ -2,11 +2,11 @@ const db = require('../db/connect')
 
 class User {
 
-    constructor({ user_id, username, password, current_score, is_admin }){
+    constructor({ user_id, username, password, current_score, role }){
         this.id = user_id;
         this.username = username;
         this.password = password;
-        this.isAdmin = is_admin;
+        this.role = role;
     }
 
     static async getOneById(id){
@@ -26,8 +26,8 @@ class User {
     }
 
     static async create(data){
-        const { username, password, isAdmin} = data
-        const response = await db.query("INSERT INTO user_table (username, password) VALUES ($1, $2) RETURNING user_id;", [username, password])
+        const { username, password, role} = data
+        const response = await db.query("INSERT INTO user_table (username, password, role) VALUES ($1, $2, $3) RETURNING user_id;", [username, password, role])
         const newId = response.rows[0].user_id
         const newUser = await User.getOneById(newId)
         return newUser
