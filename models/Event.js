@@ -34,8 +34,6 @@ class User {
         );
 
         return new User(response.rows[0]);
-        
-
     
     }
 
@@ -50,5 +48,5 @@ class User {
 }
 
 
-module.exports = { Event, update, getUserById };
+module.exports = { Event, User };
 
