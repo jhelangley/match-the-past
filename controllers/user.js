@@ -13,7 +13,6 @@ async function register(req, res){
         res.status(400).json({ error: err.message })
     }
 }
-
 async function login(req, res){
     const data = req.body
     try {
@@ -41,5 +40,17 @@ async function login(req, res){
         res.status(401).json({ error: err.message })
     }
 }
+async function updateScore(req, res) {
+    try {
+        const username = req.params.username;
+        const data = req.body;
+        const user = await User.getOneByUsername(username)
+        const updatedUser = await user.update(data)
 
-module.exports = { register, login }
+        res.status(200).json(updatedUser)
+
+    } catch (err) {
+        res.status(404).json({error: err.message})
+    }
+}
+module.exports = { register, login, updateScore }

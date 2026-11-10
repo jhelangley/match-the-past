@@ -8,13 +8,14 @@ class Event {
         this.description = description;
     }
 
-    static async getRandom() {
+    static async getRandom(level) {
+        const limit = level
         const response = await db.query(
-            'SELECT * FROM event_card ORDER BY date LIMIT 4;'
+            'SELECT * FROM event_card ORDER BY RANDOM() LIMIT $1;', [limit]
         );
 
-        return response.rows.map(e => new Event(e));
+        return response.rows.map(e => new Event(e))
     }
 }
 
-module.exports = Event
+module.exports =Event

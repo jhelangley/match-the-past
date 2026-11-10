@@ -41,9 +41,11 @@ class User {
             [currentScore, this.id]
         );
 
-        return new User(response.rows[0]);
+        return new User(response.rows[0])
     
     }
 }
 
-module.exports = User;
+
+
+module.exports = User
