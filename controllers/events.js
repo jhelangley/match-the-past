@@ -13,8 +13,6 @@ async function random(req, res) {
     }
 }
 
-
-
 async function updateScore(req, res) {
     try {
         const username = req.params.username;
