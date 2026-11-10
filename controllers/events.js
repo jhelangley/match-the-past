@@ -17,9 +17,9 @@ async function random(req, res) {
 
 async function updateScore(req, res) {
     try {
-        const id = req.params.id
+        const username = req.params.username;
         const data = req.body;
-        const user = await User.getStudentById(id);
+        const user = await User.getOneByUsername(username);
         const updatedUser = await user.update(data);
 
         res.status(200).json(updatedUser);
