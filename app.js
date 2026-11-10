@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 
-const eventRouter = require('./routers/events');
+const { eventRouter } = require('./routers/events');
 
 const app = express();
 
