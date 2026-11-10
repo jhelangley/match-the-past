@@ -11,7 +11,7 @@ class Event {
     static async getRandom(level) {
         const limit = level
         const response = await db.query(
-            'SELECT * FROM event_card ORDER BY RANDOM() LIMIT $1;', [limit]
+            'SELECT * FROM (SELECT * FROM event_card ORDER BY RANDOM() LIMIT $1) AS random_events ORDER BY date ASC;', [limit]
         );
 
         return response.rows.map(e => new Event(e))
