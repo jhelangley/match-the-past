@@ -1,4 +1,4 @@
-const db = require('../db/connect')
+const db = require('../api/database/connect')
 
 class User {
 
@@ -41,30 +41,11 @@ class User {
             [currentScore, this.id]
         );
 
-        return new User(response.rows[0]);
+        return new User(response.rows[0])
     
     }
 }
 
-class Event {
-    constructor({ id, title, date, description }) {
-        this.id = id;
-        this.title = title;
-        this.date = date;
-        this.description = description;
-    }
-
-    static async getRandom() {
-        const response = await db.query(
-            'SELECT * FROM event_cards ORDER BY RANDOM() LIMIT 3;'
-        );
-
-        return response.rows.map(e => new Event(e));
-    }
-}
 
 
-
-
-
-module.exports = { Event, User };
+module.exports = User

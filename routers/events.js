@@ -1,13 +1,14 @@
-const { Router } = require('express');
+const { Router } = require('express')
 
-const eventController = require('../controllers/events');
+const eventController = require('../controllers/events')
 
-const eventRouter = Router();
-const studentRouter = Router();
-
-eventRouter.get('/random', eventController.random);
-studentRouter.put('/:id', eventController.updateScore);
+const eventRouter = Router()
 
 
-module.exports = { eventRouter, studentRouter };
+eventRouter.get('/random/:level', eventController.random)
+
+
+
+module.exports = eventRouter
+
 

@@ -1,10 +1,11 @@
-const Event = require('../models/Event');
+const Event = require('../models/Event')
 
 async function random(req, res) {
     try {
-        const events = await Event.getRandom();
+        const level = parseInt(req.params.level)
+        const events = await Event.getRandom(level)
 
-        res.status(200).json(events);
+        res.status(200).json(events)
 
     } catch (err) {
         res.status(500).json({
@@ -15,18 +16,4 @@ async function random(req, res) {
 
 
 
-async function updateScore(req, res) {
-    try {
-        const username = req.params.username;
-        const data = req.body;
-        const user = await User.getOneByUsername(username);
-        const updatedUser = await user.update(data);
-
-        res.status(200).json(updatedUser);
-
-    } catch (err) {
-        res.status(404).json({error: err.message});
-    }
-}
-
-module.exports = { random, updateScore };
+module.exports = { random }
