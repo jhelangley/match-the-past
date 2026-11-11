@@ -7,7 +7,6 @@ async function register(req, res){
         const data = req.body
         const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_SALT_ROUNDS))
         data.password = await bcrypt.hash(data.password, salt)
-
         const result = await User.create(data)
         res.status(201).send(result) // data?
     } catch(err){
@@ -24,7 +23,7 @@ async function login(req, res){
         }
         const match = await bcrypt.compare(data.password, user.password)
         if (match){
-            const isAdmin = data.role === "staff"
+            const isAdmin = data.role
             if (isAdmin != user.is_admin){
                 throw new Error("Incorrect account type")
             }
