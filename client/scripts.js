@@ -1,78 +1,41 @@
-const events = [
-    {
-        "date": "1452-10-02",
-        "title": "Richard III born",
-        "description": "The future king was born at Fotheringhay Castle. His remains were rediscovered beneath a Leicester car park in 2012."
-    },
-    {
-        "date": "1457-01-28",
-        "title": "Henry VII born",
-        "description": "Born at Pembroke Castle, Henry Tudor would establish the Tudor dynasty after defeating Richard III at Bosworth."
-    },
-    {
-        "date": "1473-02-19",
-        "title": "Nicolaus Copernicus born",
-        "description": "The Polish astronomer later proposed a Sun-centred model of the planetary system, challenging the prevailing geocentric account."
-    },
-    {
-        "date": "1478-02-07",
-        "title": "Thomas More born (traditional date)",
-        "description": "The humanist author of Utopia later became Henry VIII’s lord chancellor and was executed for refusing the royal supremacy."
-    },
-    {
-        "date": "1485-08-22",
-        "title": "Battle of Bosworth Field; Richard III dies; Henry VII becomes king",
-        "description": "Henry Tudor defeated Richard III in a decisive battle of the Wars of the Roses. Richard was the last English king to die in battle."
-    },
-    {
-        "date": "1485-12-15",
-        "title": "Catherine of Aragon born",
-        "description": "Catherine of Aragon was born during a period of major political, religious and cultural change in Europe. This date places the figure within the wider Tudor-era chronology."
-    },
-    {
-        "date": "1486-09-19",
-        "title": "Arthur, Prince of Wales, born",
-        "description": "Arthur, Prince of Wales, was born during a period of major political, religious and cultural change in Europe. This date places the figure within the wider Tudor-era chronology."
-    },
-    {
-        "date": "1489-07-02",
-        "title": "Thomas Cranmer born",
-        "description": "Thomas Cranmer was born during a period of major political, religious and cultural change in Europe. This date places the figure within the wider Tudor-era chronology."
-    },
-    {
-        "date": "1489-11-29",
-        "title": "Margaret Tudor born",
-        "description": "Margaret Tudor was born during a period of major political, religious and cultural change in Europe. This date places the figure within the wider Tudor-era chronology."
-    },
-    {
-        "date": "1491-06-28",
-        "title": "Henry VIII born",
-        "description": "Henry VIII was born during a period of major political, religious and cultural change in Europe. This date places the figure within the wider Tudor-era chronology."
-    },
-    {
-        "date": "1500-02-24",
-        "title": "Charles V of Spain born",
-        "description": "Charles V of Spain was born during a period of major political, religious and cultural change in Europe. This date places the figure within the wider Tudor-era chronology."
-    },
-    {
-        "date": "1501-09-27",
-        "title": "Catherine of Aragon arrives in England",
-        "description": "This event belongs to the turbulent Tudor and Elizabethan era, when religious reform, diplomacy and dynastic politics were closely intertwined."
-    },
-    {
-        "date": "1501-11-14",
-        "title": "Catherine of Aragon married Arthur, Prince of Wales",
-        "description": "Dynastic marriages could determine alliances, inheritance and succession across European courts. Such unions were often as politically significant as they were personal."
-    },
-    {
-        "date": "1502-04-02",
-        "title": "Arthur, Prince of Wales, died",
-        "description": "The death was part of the changing political and cultural landscape of sixteenth-century Europe. Its consequences depended on the individual’s position and connections."
-    }];
     
-/* const gameState = {
+    
+    // GAME STATE VARIABLES
+    
+    let sortedArray = [];
+    let shuffledArray = [];
+    
+    // currently unused
+    let roundNumber = 1; 
+    
 
-} */
+    
+    // DATA FETCHING
+
+
+    // this function receives the round number and requests the correct number of event cards from the database. 
+    // it receives a date-ordered array from the database, which it then shuffles using our shuffle function (in the UTILITIES section)
+    // it assigns each one to our game state variables declared above... we need both so we can compare the user's order to the correct order. 
+
+    const getEvents = async (number) => {
+        
+        const response = await fetch(`http://localhost:3001/events/random/${number + 1}`)
+        
+        if (!response.ok) {
+            throw new Error(`Failed to fetch events: ${response.status}`);
+        }
+        
+        const sortedArray = await response.json()
+        
+        return { sortedArray: sortedArray, shuffledArray: shuffle(sortedArray) }
+    };
+    
+
+
+    // UTILTIES
+    
+    // this function receives a date-ordered array (the correct answer) and randomly shuffles the event cards.
+    // it uses fisher-yates shuffle, which may occasionally result in the correct order - we can fix that down the line.
     
     const shuffle = (array) => {
         const shuffled = [...array]
@@ -90,24 +53,15 @@ const events = [
     }
     
     
+    // CARD RENDERING
     
-    const getEvents = (number) => {
-        let sortedArray = []
-        for (let i = 0; i < number; i++) {
-            randomIndex = Math.floor(Math.random() * events.length)
-            
-            // TO DO - implement a check that the event is unique in the table
-            
-            sortedArray.push(events[randomIndex])
-        }
-        
-        return { sortedArray: sortedArray, shuffledArray: shuffle(sortedArray) }
-    };
-    
-    const { sortedArray, shuffledArray } = getEvents(4)
-    console.log(sortedArray)
-    console.log(shuffledArray)
-    
+    // this function returns a 'card' that contains all the required HTML to render it on the page.
+    // it uses the HTML <template> tag, which lets us define the basic structure in index.html for use in this function, 
+    // and then set the appropriate textContent for each element.
+
+    // IMPORTANT: we shouldn't use .innerHTML with template literals as that can introduce scripting vulnerabilities.
+    // that's why we're using <template> instead, as it reduces the lines of code needed to add all the necessary DOM nodes.
+
     const EventCard = (event, currentIndex) => {
         const template = document.querySelector("#event-card-template");
         
@@ -133,37 +87,53 @@ const events = [
         
         return card;
     }
+
+
+    // this function receives an array of events, goes through them with forEach() and passes each one to our EventCard function above. 
+    // it should run any time the cards change in some way - e.g. the start of a round, moving cards with their arrow buttons.// each time it's called, it clears any existing HTML in the game window before re-rendering all cards. 
+    // each time it's called, it clears any existing HTML in the game window before re-rendering all cards. 
+    // each loop of the forEach appends the newly created event card to the game window's HTML, and that's how it's displayed on the screen.
+
     
     const renderEvents = (events) => {
         const gameWindow = document.querySelector('#game-window')
-
-        // rendering correct answers for testing only
+        
+        // rendering correct answers at the bottom for testing purposes only -- DELETE THIS FOR PROD VERSION
         const correctAnswer = document.querySelector('#correct-answer')
-
+        
         gameWindow.innerHTML = ""
         events.forEach((event, currentIndex) => {
             gameWindow.append(EventCard(event, currentIndex))
         })
+
+
+        // rendering correct answers at the bottom for testing purposes only -- DELETE THIS FOR PROD VERSION
         correctAnswer.innerHTML = "";
         sortedArray.forEach(event => {
-            correctAnswer.innerHTML += `<li>${event.title}</li`
+            correctAnswer.innerHTML += `<li>${event.title}</li>`
         })
     }
     
-    
-    
-    renderEvents(shuffledArray)
-    
+
+
+
+
+    // GAME INTERACTIONS
+
+    // this function is passed to the direction buttons in each event card. 
+    // it receives the card's current index in the shuffledArray to swap it with its previous or next neighbour 
+    // (by receiving -1 for up and 1 for down as the direction argument.
     const moveCard = (currentIndex, direction) => {
         
         [shuffledArray[currentIndex + direction], shuffledArray[currentIndex]] = [shuffledArray[currentIndex], shuffledArray[currentIndex + direction]];
         renderEvents(shuffledArray)
     }
     
-    const compareArrays = (sorted, shuffled) => {
-        
-    }
-    
+    // this is called when the user clicks the check answers button.
+    // it uses a for loop to compare each item in the shuffledArray (user determined) and sortedArray (what we received from the API).
+    // it prints the result on the screen, and also shows the dates on each card using CSS (visibility property).
+    // console logs are for testing purposes only.
+
     const checkAnswers = () => {
         console.log(sortedArray)
         console.log(shuffledArray)
@@ -175,18 +145,43 @@ const events = [
             }
         }
         
-            document.querySelector('#success').innerText = "You got it right!"
-            document.querySelectorAll('.date.hidden')
-                .forEach(date => date.classList.remove('hidden'))
-            return true
-       
+        document.querySelector('#success').innerText = "You got it right!"
+        document.querySelectorAll('.date.hidden')
+        .forEach(date => date.classList.remove('hidden'))
+        return true
+        
         
     }
-    
+    // adding the listener for the check button
     document.querySelector('#check-btn').addEventListener('click', () => checkAnswers());
+    
 
+    // TO DO: this function will reset the game to round 1
     const reset = () => {
         console.log("game reset")
     }
-
+    // adding the listener for the reset button
     document.querySelector('#reset-btn').addEventListener('click', () => reset());
+    
+    
+
+
+    // SETUP TESTING
+
+    // currently just using this to render cards on the page for testing. we'll need to replace this with the full game flow.
+    // number of event cards is currently hard coded here -- getEvents should eventually receive roundNumber to decide how many cards to return.
+
+    const testRender = async () => {
+        try {
+            const events = await getEvents(3);
+            
+            sortedArray = events.sortedArray;
+            shuffledArray = events.shuffledArray;
+            
+            renderEvents(shuffledArray);
+        } catch (error) {
+            console.error('Error loading events:', error);
+        }
+    };
+    
+    testRender();
