@@ -18,8 +18,8 @@ CREATE TABLE event_card(
     PRIMARY KEY(event_id)
 );
 
-INSERT INTO user_table (username, password, role)
-VALUES ('admin', 'password123', 'super_admin');
+INSERT INTO user_table (username, password, is_admin)
+VALUES ('admin', 'password123', 'true');
 
 INSERT INTO event_card(title, date, description)
 VALUES
