@@ -2,11 +2,10 @@ const db = require('../database/connect')
 
 class User {
 
-    constructor({ user_id, username, password, current_score, role }){
+    constructor({ user_id, username, password, current_score}){
         this.id = user_id;
         this.username = username;
         this.password = password;
-        this.role = role;
         this.current_score = current_score;
     }
 
@@ -27,7 +26,7 @@ class User {
     }
 
     static async create(data){
-        const { username, password} = data
+        const { username, password } = data
         const role = 'student'
         const response = await db.query("INSERT INTO user_table (username, password, role) VALUES ($1, $2, $3) RETURNING user_id;", [username, password, role])
         const newId = response.rows[0].user_id
@@ -35,7 +34,7 @@ class User {
         return newUser
     }
 
-        async update(data) {
+    async update(data) {
         const currentScore = data.current_score
         const response = await db.query(
             'UPDATE user_table SET current_score = $1 WHERE user_id = $2 RETURNING *;',
