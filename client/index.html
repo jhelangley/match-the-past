@@ -8,19 +8,13 @@
     <title>The Past...in Order</title>
 </head>
 <body>
-    <div id="instructions">
-        <header>How to play:</header>
-            <ul>
-               <li>You will be given a number of events with a small description about each one</li>
-               <li>Your role is to order these into chronological order</li>
-               <li>Each level will increase the number of dates you have to order</li>
-            </ul>
-    </div>
+    
     <div id="game-buttons">
-        <button type="button" id="start-btn">Start game</button>
-        <button type="button" id="resume-btn">Resume game</button>
+        <button type="button" id="start-btn">Start new game</button>
+        <button type="button" id="resume-btn">Resume game from {round number fetched from db}</round></button>
+        <button type="button" id="open-instructions">View instructions</button>
     </div><br>
-
+    
     <h1>The Past...in Order</h1>
     <p>card testing</p>
     <div id="game-window"></div>
@@ -28,16 +22,49 @@
     <button id="check-btn">Check answers</button>
     <button id="reset-btn">Reset</button>
     <p id="success"></p>
-
-<template id="event-card-template">
-    <div class="event-card">
-        <h3 class="event-name"></h3>
-        <p class="event-description"></p>
-        <p class="date hidden"></p>
-        <button class="move-btn up">Move up</button>
-        <button class="move-btn down">Move down</button>
-    </div>
-</template>
+    
+    
+    
+    
+    <!-- INSTRUCTIONS DIALOG -->
+    <dialog id="instructions-dialog">
+        <div class="instructions-wrapper">
+            <h2>How To Play:</h2>
+            <ul>
+                <li>You'll be given a number of events with a small description of each one.</li>
+                <li>Your role is to move the cards into chronological order using the up or down button on each card.</li>
+                <li>Once you think you've got them in the correct order, click the 'check answers' button to see.</li>
+                <li>If you're right, you'll move onto the next level. </li>
+                <li>Each level will increase the number of dates you need to order.</li>
+            </ul>
+            <button type="button" id="close-instructions">Close</button>
+        </div>
+    </dialog>
+    
+    
+    <template id="start-screen">
+        
+    </template>
+    
+    
+    <template id="game-screen">
+        
+        
+        
+    </template>"
+    
+    
+    
+    <!-- EVENT CARD TEMPLATE-->
+    <template id="event-card-template">
+        <div class="event-card">
+            <h3 class="event-name"></h3>
+            <p class="event-description"></p>
+            <p class="date hidden"></p>
+            <button class="move-btn up">Move up</button>
+            <button class="move-btn down">Move down</button>
+        </div>
+    </template>
     
 </body>
 </html>

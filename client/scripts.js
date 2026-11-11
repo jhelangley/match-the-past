@@ -8,6 +8,15 @@
     // currently unused
     let roundNumber = 1; 
     
+    // GAME CONTROLS
+
+    const openInstructionsButton = document.querySelector('#open-instructions');
+    const instructionsDialog = document.querySelector('#instructions-dialog');
+    const closeInstructionsButton = document.querySelector('#close-instructions');
+
+    openInstructionsButton.addEventListener("click", () => instructionsDialog.showModal())
+    closeInstructionsButton.addEventListener("click", () => instructionsDialog.close())
+
 
     
     // DATA FETCHING
@@ -185,3 +194,10 @@
     };
     
     testRender();
+
+
+
+
+
+   
+    
