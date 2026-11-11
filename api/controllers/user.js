@@ -24,12 +24,10 @@ async function login(req, res){
         }
         const match = await bcrypt.compare(data.password, user.password)
         if (match){
-// res.status(200).json({success: true})
-
-            if (data.role != user.role){
+            const isAdmin = data.role === "staff"
+            if (isAdmin != user.is_admin){
                 throw new Error("Incorrect account type")
             }
-
             const payload = {username: user.name}
             const sendToken = (err, token)=>{
                 if (err){
