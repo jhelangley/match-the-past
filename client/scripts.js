@@ -230,7 +230,7 @@
         console.log("game reset")
     }
     // adding the listener for the reset button
-    document.querySelector('#reset-button').addEventListener('click', () => reset());
+    document.querySelector('#reset-button').addEventListener('click', () => renderRound(currentLevel));
     
     
     
