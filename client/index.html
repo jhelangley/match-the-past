@@ -10,9 +10,10 @@
 <body>
     
     <div id="game-buttons">
-        <button type="button" id="start-btn">Start new game</button>
-        <button type="button" id="resume-btn">Resume game from {round number fetched from db}</round></button>
+        <button type="button" id="start-button">Start new game</button>
+        <button type="button" id="resume-button">Resume game from {round number fetched from db}</round></button>
         <button type="button" id="open-instructions">View instructions</button>
+        <button type="button" id="save-button">Save progress</button>
     </div><br>
     
     <h1>The Past...in Order</h1>
@@ -36,10 +37,36 @@
                 <li>Once you think you've got them in the correct order, click the 'check answers' button to see.</li>
                 <li>If you're right, you'll move onto the next level. </li>
                 <li>Each level will increase the number of dates you need to order.</li>
+                <br>
+                
             </ul>
+            <p>You can also click the 'save progress' button and your current round will be saved to your student account so you can return later.</p>
             <button type="button" id="close-instructions">Close</button>
         </div>
     </dialog>
+    
+    <!-- SUCCESS & FAILURE DIALOGS -->
+    
+    <dialog id="success-dialog">
+        <h3>You got it right!</h3>
+        <p>Well done. You can start the next level, replay the same level with new cards, or save your progress.</p>
+        <div>
+            <button id="success-next-level">Start next level</button>
+            <button id="success-replay-level">Replay level</button>
+            <button id="success-save">Save progress</button>
+        </div>
+    </dialog>
+
+    <dialog id="failure-dialog">
+        <h3>That's not quite right!</h3>
+        <p>Return to the game to try again, replay the same level with new cards, or save your progress for later.</p>
+        <div>
+            <button id="failure-try-again">Try again</button>
+            <button id="failure-replay-level">New round</button>
+            <button id="failure-save">Save progress</button>
+        </div>
+    </dialog>
+    
     
     
     <template id="start-screen">

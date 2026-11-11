@@ -119,3 +119,14 @@ table td, th {
     justify-content: center;
     align-items: center;
 }
+
+
+#success-dialog {
+    background-color: rgba(0, 255, 0, 0.5);
+    backdrop-filter: blur(8px);
+}
+
+#failure-dialog {
+    background-color: rgba(255, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+}
