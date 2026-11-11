@@ -7,12 +7,14 @@ async function register(req, res){
         const data = req.body
         const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_SALT_ROUNDS))
         data.password = await bcrypt.hash(data.password, salt)
+
         const result = await User.create(data)
-        res.status(201).send(result)
+        res.status(201).send(result) // data?
     } catch(err){
         res.status(400).json({ error: err.message })
     }
 }
+
 async function login(req, res){
     const data = req.body
     try {
@@ -31,6 +33,8 @@ async function login(req, res){
                 if (err){
                     throw new Error('Error in token generation')
                 }
+
+
                 res.status(200).json({success: true, token: token})
             }
             jwt.sign(payload, process.env.SECRET_TOKEN, {expiresIn: 3600}, sendToken)
@@ -41,6 +45,8 @@ async function login(req, res){
         res.status(401).json({ error: err.message })
     }
 }
+
+
 async function updateScore(req, res) {
     try {
         const username = req.params.username;

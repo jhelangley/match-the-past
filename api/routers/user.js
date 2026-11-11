@@ -1,9 +1,13 @@
 const { Router } = require('express')
+const authenticator = require('../middleware/authenticator')
 
 const userController = require('../controllers/user')
 
-const studentRouter = Router()
+const userRouter = Router()
 
-studentRouter.put('/:username', userController.updateScore)
+userRouter.post('/register', userController.register)
+userRouter.post('/login', userController.login)
 
-module.exports =  studentRouter
+userRouter.put('/:username/score', authenticator, userController.updateScore)
+
+module.exports =  userRouter
