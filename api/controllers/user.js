@@ -15,8 +15,6 @@ async function register(req, res){
     }
 }
 
-
-
 async function login(req, res){
     const data = req.body
     try {
@@ -31,7 +29,6 @@ async function login(req, res){
             if (data.role != user.role){
                 throw new Error("Incorrect account type")
             }
-
 
             const payload = {username: user.name}
             const sendToken = (err, token)=>{
