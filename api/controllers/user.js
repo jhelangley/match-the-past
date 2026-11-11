@@ -49,9 +49,9 @@ async function login(req, res){
 async function updateScore(req, res) {
     try {
         const username = req.params.username;
-        const data = req.body;
+        const score = req.params.score;
         const user = await User.getOneByUsername(username)
-        const updatedUser = await user.update(data)
+        const updatedUser = await user.update(score)
 
         res.status(200).json(updatedUser)
 
