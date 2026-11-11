@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="./login.js" defer></script>
+    <title>The Past...in Order</title>
+</head>
+<body>
+    <div id="login-container">
+        <div class="role-buttons">
+            <button type="button" id="student-btn" class="role-btn">Student</button>
+            <button type="button" id="staff-btn" class="role-btn">Staff</button>
+        </div>
+        <div id="log-in">
+            <header>Log in or Sign up</header>
+            <form id="login-form">
+                <fieldset>
+                    <label for="username">Username:</label><br>
+                    <input type="text" id="username" name="username" required>
+                </fieldset>
+                <fieldset>
+                    <label for="password">Password:</label><br>
+                    <input type="password" id="password" name="password">
+                </fieldset>
+                <div class="form-buttons">
+                    <input type="submit" value="Log in" class="submit-btn" id="login-btn">
+                    <input type="submit" value="Register" class="submit-btn" id="register-btn">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

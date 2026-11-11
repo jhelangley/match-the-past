@@ -23,3 +23,84 @@ body {
 .hidden {
     visibility: hidden;
 }
+
+#login-container{
+    width: 400px;
+    margin: 50px auto;
+}
+
+.role-buttons{
+    display: flex;
+    width: 100%;
+    gap: 0;
+}
+
+.role-btn{
+    flex: 1;
+    padding: 10px;
+    border: 1px solid black;
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+    background-color: #fffdee79;
+}
+
+.role-btn.selected {
+    background-color: #FFFDEE;
+    border-bottom: 1px solid #FFFDEE;
+    margin-bottom: -1px;
+    z-index: 1;
+}
+
+#log-in {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 25px;
+    border: 1px solid black;
+    border-radius: 0 0 12px 12px;
+    background-color: #FFFDEE;
+}
+
+#log-in header {
+    text-align: center;
+    font-size: large;
+    margin-bottom: 15px;
+}
+
+#login-form fieldset{
+    border: none;
+}
+
+#username{
+    width: 100%;
+    padding: 5px;
+    border: 1.5px solid black;
+    border-radius: 6px;
+}
+
+#password{
+    width: 100%;
+    padding: 5px;
+    border: 1.5px solid black;
+    border-radius: 6px;
+}
+
+.form-buttons{
+    text-align: center;
+    border-collapse: collapse;
+}
+
+table{
+    width: 80%;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+table td, th {
+    border: 1px solid black;
+}
+
+.my-navbar {
+    background-color: #FFFDEE;
+}
