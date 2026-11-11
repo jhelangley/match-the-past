@@ -27,7 +27,8 @@ class User {
     }
 
     static async create(data){
-        const { username, password, role} = data
+        const { username, password} = data
+        const role = 'student'
         const response = await db.query("INSERT INTO user_table (username, password, role) VALUES ($1, $2, $3) RETURNING user_id;", [username, password, role])
         const newId = response.rows[0].user_id
         const newUser = await User.getOneById(newId)
@@ -35,9 +36,9 @@ class User {
     }
 
         async update(data) {
-        const currentScore = data.current_score || this.current_score;
+        const currentScore = data.current_score
         const response = await db.query(
-            'UPDATE users SET current_score = $1 WHERE id = $2 RETURNING *;',
+            'UPDATE user_table SET current_score = $1 WHERE user_id = $2 RETURNING *;',
             [currentScore, this.id]
         );
 
@@ -45,7 +46,4 @@ class User {
     
     }
 }
-
-
-
 module.exports = User

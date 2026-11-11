@@ -31,12 +31,13 @@ async function login(req, res){
             if (data.role != user.role){
                 throw new Error("Incorrect account type")
             }
+
+
             const payload = {username: user.name}
             const sendToken = (err, token)=>{
                 if (err){
                     throw new Error('Error in token generation')
                 }
-
 
 
                 res.status(200).json({success: true, token: token})
@@ -49,9 +50,6 @@ async function login(req, res){
         res.status(401).json({ error: err.message })
     }
 }
-
-
-
 
 
 async function updateScore(req, res) {
