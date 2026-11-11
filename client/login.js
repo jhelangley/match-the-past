@@ -12,7 +12,7 @@ staffBtn.addEventListener("click", () => {
     staffBtn.classList.add("selected")
     studentBtn.classList.remove("selected")
 })
-//adding stuff
+
 document.getElementById("login-form").addEventListener("submit", async (e)=> {
     e.preventDefault()
     const form = new FormData(e.target)
@@ -45,6 +45,7 @@ document.getElementById("login-form").addEventListener("submit", async (e)=> {
 
 document.getElementById("register-btn").addEventListener("click", async (e) => {
     e.preventDefault()
+
     const form = new FormData(document.getElementById("login-form"))
     const options = {
         method: "POST", 
