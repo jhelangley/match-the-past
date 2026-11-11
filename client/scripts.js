@@ -47,10 +47,10 @@
     });
     
     successSave.addEventListener("click", () => {
-        successDialog.close();
+        
         // TO DO save progress
 
-        console.log(`saving current level ${roundNumber} to user's account`)
+        saveProgress(roundNumber);
     });
     
     // failure dialog
@@ -67,10 +67,10 @@
     });
     
     failureSave.addEventListener("click", () => {
-        failureDialog.close();
+        
         // TO DO save progress
 
-        console.log(`saving current level ${roundNumber} to user's account`)
+        saveProgress(roundNumber);
     });
     
     // DATA FETCHING
