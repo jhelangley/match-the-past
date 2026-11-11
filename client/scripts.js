@@ -4,7 +4,8 @@
     
     let sortedArray = [];
     let shuffledArray = [];
-    let currentLevel = 1
+    let currentLevel = 1;
+    let currentUser = null;
     
     // GAME CONTROLS
     
@@ -14,7 +15,7 @@
     
     // ENTER DB QUERY HERE IN THIS FUNCTION AND THEN WE CAN REUSE IT ON ANY SAVE PROGRESS BUTTONS AROUND THE GAME
     const saveProgress = async (currentLevel) => {
-        
+        // fetch request to update user score in db
         console.log(`saving current level ${currentlevel} to user's account`)
     }
     

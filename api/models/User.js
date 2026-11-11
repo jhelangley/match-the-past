@@ -35,8 +35,8 @@ class User {
         return newUser
     }
 
-        async update(data) {
-        const currentScore = data.current_score
+        async update(score) {
+        const currentScore = score
         const response = await db.query(
             'UPDATE user_table SET current_score = $1 WHERE user_id = $2 RETURNING *;',
             [currentScore, this.id]
