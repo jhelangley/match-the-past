@@ -12,7 +12,7 @@ staffBtn.addEventListener("click", () => {
     staffBtn.classList.add("selected")
     studentBtn.classList.remove("selected")
 })
-
+//adding stuff
 document.getElementById("login-btn").addEventListener("submit", async (e)=> {
     e.preventDefault()
     const form = new FormData(e.target)
