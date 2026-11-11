@@ -1,9 +1,9 @@
 const express = require('express')
 const cors = require('cors')
-const logger = require('./middleware/logger')
+const logger = require('./api/middleware/logger')
 
-const eventRouter = require('./routers/events')
-const studentRouter = require('./routers/user')
+const eventRouter = require('./api/routers/events')
+const userRouter = require('./api/routers/user')
 
 const app = express()
 
@@ -12,5 +12,5 @@ app.use(express.json())
 app.use(logger)
 
 app.use('/events', eventRouter)
-app.use('/students', studentRouter)
+app.use('/users', userRouter)
 module.exports = app;

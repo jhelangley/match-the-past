@@ -1,4 +1,4 @@
-const db = require('../api/database/connect')
+const db = require('../database/connect')
 
 class Event {
     constructor({ id, title, date, description }) {
