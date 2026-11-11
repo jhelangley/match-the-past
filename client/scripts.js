@@ -4,23 +4,30 @@
     
     let sortedArray = [];
     let shuffledArray = [];
-    let currentRound = 1
-    
-    // currently unused
-    let roundNumber = 1;
+    let currentLevel = 1
     
     // GAME CONTROLS
-
+    
     // save progress button
     const saveButton = document.querySelector('#save-button')
-    saveButton.addEventListener('click', (currentRound) => saveProgress(currentRound))
-
+    saveButton.addEventListener('click', (currentLevel) => saveProgress(currentLevel))
+    
     // ENTER DB QUERY HERE IN THIS FUNCTION AND THEN WE CAN REUSE IT ON ANY SAVE PROGRESS BUTTONS AROUND THE GAME
-    const saveProgress = async (currentRound) => {
-
-        console.log(`saving current level ${roundNumber} to user's account`)
+    const saveProgress = async (currentLevel) => {
+        
+        console.log(`saving current level ${currentlevel} to user's account`)
     }
     
+    // current level display
+    const currentLevelText = document.querySelector('#current-level-text')
+    
+    const updateLevel = () => {
+        currentLevel += 1;
+        currentLevelText.innerText = currentLevel;
+    }
+    
+
+
     // instructions
     const openInstructions = document.querySelector('#open-instructions');
     const instructionsDialog = document.querySelector('#instructions-dialog');
@@ -29,7 +36,6 @@
     openInstructions.addEventListener("click", () => instructionsDialog.showModal())
     closeInstructions.addEventListener("click", () => instructionsDialog.close())
     
-    
     // success dialog
     const successDialog = document.querySelector("#success-dialog");
     const successNextLevel = document.querySelector("#success-next-level");
@@ -37,20 +43,23 @@
     const successSave = document.querySelector("#success-save");
     
     successNextLevel.addEventListener("click", () => {
+        updateLevel();
         successDialog.close();
-        // TO DO start next level
+        renderRound(currentLevel);
     });
     
     successReplayLevel.addEventListener("click", () => {
         successDialog.close();
-        // TO DO replay current level with new cards
+        renderRound(currentLevel);
     });
     
     successSave.addEventListener("click", () => {
         
-        // TO DO save progress
-
-        saveProgress(roundNumber);
+        // IMPORTANT
+        // this saves one beyond the current level
+        // as the level won't increase until start next level button is clicked
+        
+        saveProgress(currentLevel + 1);
     });
     
     // failure dialog
@@ -60,23 +69,20 @@
     const failureSave = document.querySelector("#failure-save");
     
     failureTryAgain.addEventListener("click", () => failureDialog.close());
-
+    
     failureReplayLevel.addEventListener("click", () => {
         failureDialog.close();
-        // TO DO replay current level with new cards
+        renderRound(currentLevel);
     });
     
     failureSave.addEventListener("click", () => {
-        
-        // TO DO save progress
-
-        saveProgress(roundNumber);
+            saveProgress(currentLevel);
     });
     
     // DATA FETCHING
     
     
-    // this function receives the round number and requests the correct number of event cards from the database. 
+    // this function receives the level number and requests the correct number of event cards from the database. 
     // it receives a date-ordered array from the database, which it then shuffles using our shuffle function (in the UTILITIES section)
     // it assigns each one to our game state variables declared above... we need both so we can compare the user's order to the correct order. 
     
@@ -153,7 +159,7 @@
     
     
     // this function receives an array of events, goes through them with forEach() and passes each one to our EventCard function above. 
-    // it should run any time the cards change in some way - e.g. the start of a round, moving cards with their arrow buttons.// each time it's called, it clears any existing HTML in the game window before re-rendering all cards. 
+    // it should run any time the cards change in some way - e.g. the start of a level, moving cards with their arrow buttons.// each time it's called, it clears any existing HTML in the game window before re-rendering all cards. 
     // each time it's called, it clears any existing HTML in the game window before re-rendering all cards. 
     // each loop of the forEach appends the newly created event card to the game window's HTML, and that's how it's displayed on the screen.
     
@@ -208,7 +214,6 @@
             }
         }
         
-        document.querySelector('#success').innerText = "You got it right!"
         document.querySelectorAll('.date.hidden')
         .forEach(date => date.classList.remove('hidden'))
         successDialog.showModal();
@@ -217,38 +222,37 @@
         
     }
     // adding the listener for the check button
-    document.querySelector('#check-btn').addEventListener('click', () => checkAnswers());
+    document.querySelector('#check-button').addEventListener('click', () => checkAnswers());
     
     
-    // TO DO: this function will reset the game to round 1
+    // TO DO: this function will reset the game to level 1
     const reset = () => {
         console.log("game reset")
     }
     // adding the listener for the reset button
-    document.querySelector('#reset-btn').addEventListener('click', () => reset());
+    document.querySelector('#reset-button').addEventListener('click', () => reset());
     
     
     
     
-    // SETUP TESTING
-    
+       
     // currently just using this to render cards on the page for testing. we'll need to replace this with the full game flow.
-    // number of event cards is currently hard coded here -- getEvents should eventually receive roundNumber to decide how many cards to return.
+    // number of event cards is currently hard coded here -- getEvents should eventually receive levelNumber to decide how many cards to return.
     
-    const testRender = async () => {
+    const renderRound = async () => {
         try {
-            const events = await getEvents(3);
+            const events = await getEvents(currentLevel);
             
             sortedArray = events.sortedArray;
             shuffledArray = events.shuffledArray;
-            
+            currentLevelText.innerText = currentLevel;
             renderEvents(shuffledArray);
         } catch (error) {
             console.error('Error loading events:', error);
         }
     };
     
-    testRender();
+    renderRound();
     
     
     

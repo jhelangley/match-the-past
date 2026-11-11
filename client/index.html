@@ -10,18 +10,21 @@
 <body>
     
     <div id="game-buttons">
-        <button type="button" id="start-button">Start new game</button>
+        <button type="button" id="start-button">Start new game from level 1</button>
         <button type="button" id="resume-button">Resume game from {round number fetched from db}</round></button>
         <button type="button" id="open-instructions">View instructions</button>
         <button type="button" id="save-button">Save progress</button>
+        <button type="button" id="hint-button">Get a hint</button>
     </div><br>
     
     <h1>The Past...in Order</h1>
-    <p>card testing</p>
+    <div id="level-display-container">
+        <p>CURRENT LEVEL: <span id="current-level-text"></span></p>
+    </div>
     <div id="game-window"></div>
     <ol id="correct-answer"></ol>
-    <button id="check-btn">Check answers</button>
-    <button id="reset-btn">Reset</button>
+    <button id="check-button">Check answers</button>
+    <button id="reset-button">Get new cards</button>
     <p id="success"></p>
     
     
@@ -56,7 +59,7 @@
             <button id="success-save">Save progress</button>
         </div>
     </dialog>
-
+    
     <dialog id="failure-dialog">
         <h3>That's not quite right!</h3>
         <p>Return to the game to try again, replay the same level with new cards, or save your progress for later.</p>
