@@ -1,23 +1,40 @@
-    
+    // require('dotenv').config()
+    const PORT = 3001
     
     // GAME STATE VARIABLES
     
     let sortedArray = [];
     let shuffledArray = [];
     let currentLevel = 1;
-    let currentUser = null;
+    let currentUser = 'user';
+    let gotHint = false
     
     // GAME CONTROLS
     
     // save progress button
     const saveButton = document.querySelector('#save-button')
-    saveButton.addEventListener('click', (currentLevel) => saveProgress(currentLevel))
+    saveButton.addEventListener('click', () => saveProgress(currentLevel))
     
     // ENTER DB QUERY HERE IN THIS FUNCTION AND THEN WE CAN REUSE IT ON ANY SAVE PROGRESS BUTTONS AROUND THE GAME
     const saveProgress = async (currentLevel) => {
         // fetch request to update user score in db
-        console.log(`saving current level ${currentlevel} to user's account`)
-    }
+
+        const token = localStorage.getItem('token')
+        const username = localStorage.getItem('username')
+
+        const response = await fetch(`http://localhost:3001/users/${username}/score`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ current_score: currentLevel })
+        })
+
+    
+    
+  
+    
     
     // current level display
     const currentLevelText = document.querySelector('#current-level-text')
@@ -89,7 +106,7 @@
     
     const getEvents = async (number) => {
         
-        const response = await fetch(`http://localhost:3001/events/random/${number + 1}`)
+        const response = await fetch(`http://localhost:${PORT}/events/random/${number + 1}`)
         
         if (!response.ok) {
             throw new Error(`Failed to fetch events: ${response.status}`);
@@ -140,9 +157,12 @@
         
         card.querySelector(".event-name").textContent = event.title;
         card.querySelector(".event-description").textContent = event.description;
-        card.querySelector(".date.hidden").textContent = event.date;
-        
-        
+        card.querySelector(".date.hidden").textContent = new Date(event.date).toLocaleDateString("en-GB", {
+            day: "numeric", month: "long", year: "numeric"
+        })
+        card.querySelector(".date.hidden").id = `date-${currentIndex}`
+
+
         if (currentIndex == 0) {
             card.querySelector(".move-btn.up").disabled = true;
         } else {
@@ -226,15 +246,48 @@
     document.querySelector('#check-button').addEventListener('click', () => checkAnswers());
     
     
-    // TO DO: this function will reset the game to level 1
-    const reset = () => {
-        console.log("game reset")
+    // Retrieving new cards
+    const newCards = () => {
+        renderRound(currentLevel)
     }
-    // adding the listener for the reset button
-    document.querySelector('#reset-button').addEventListener('click', () => renderRound(currentLevel));
+    // adding the listener for the newCards button
+    document.querySelector('#new-cards-button').addEventListener('click', () => newCards());
+
+
+    // reset from level 1
+    const resetFromOne = () => {
+        currentLevel = 1
+        renderRound(currentLevel)
+        currentLevelText.innerText = currentLevel
+    }
+
+    document.querySelector('#restart-from-one-button').addEventListener('click', () => resetFromOne())
     
-    
-    
+    // resume from last level
+    const resume = async () => {
+    const response = await fetch(`http://localhost:${PORT}/users/${currentUser}`)
+        if(!response.ok){
+            throw new Error(`Failed to retrieve level: ${response.status}`)
+        }
+
+    const score = await response.json()
+        currentLevel = score
+        renderRound(currentLevel)
+    }
+
+    document.querySelector('#resume-button').addEventListener('click', () => resume())
+
+    //get a hint
+    const getHint = () => {
+        if(!gotHint){
+        const index = Math.ceil(Math.random()*shuffledArray.length)
+        const revealedDate = document.querySelector(`#date-${index-1}`)
+        revealedDate.classList.remove('hidden')
+        gotHint = true
+        }
+    }
+
+    document.querySelector('#hint-button').addEventListener('click', () => getHint())
     
        
     // currently just using this to render cards on the page for testing. we'll need to replace this with the full game flow.
@@ -243,7 +296,8 @@
     const renderRound = async () => {
         try {
             const events = await getEvents(currentLevel);
-            
+            gotHint = false
+
             sortedArray = events.sortedArray;
             shuffledArray = events.shuffledArray;
             currentLevelText.innerText = currentLevel;

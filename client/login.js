@@ -32,6 +32,8 @@ document.getElementById("login-form").addEventListener("submit", async (e)=> {
     const data = await response.json()
     if (response.status == 200 && selectedRole == false) {
         localStorage.setItem("token", data.token)
+        localStorage.setItem("username", data.username)
+        
         window.location.assign("index.html")
         alert("Logged in!")
     } else if (response.status == 200 && selectedRole == true) {
