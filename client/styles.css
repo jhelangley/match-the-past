@@ -1,6 +1,8 @@
 body {
     background-image: url(./assets/background.png);
     background-size: cover;
+    margin: 0;
+    padding: 0;
 }
 
 .event-card {
@@ -157,13 +159,9 @@ table td, th {
 }
 
 #instructions-dialog {
-    
     z-index: 1000;
-    
     background-color: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(8px);
-
-    
     justify-content: center;
     align-items: center;
 }
@@ -183,4 +181,47 @@ table td, th {
     background: white;
     width: 200px;
     font-size: 36px;
+}
+
+#top-bar{
+    display: flex;
+    width: 100%;
+}
+
+#top-bar h1{
+    width: 30%;
+    text-align: left;
+    color: white;
+    font-size: 40px;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    padding-left: 10px;
+    padding-top: 10px;
+    margin: 0;
+}
+
+#game-buttons{
+    width: 70%;
+    text-align: right;
+    display: flex;
+    height: 30px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 0 0 18px 18px;
+    background-color: #fffdee79;
+    font-size: medium;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+
+#game-buttons button{
+    flex: 1;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #FFFDEE;
+    font-size: medium;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+
+#game-buttons button:hover{
+    background-color: rgba(165, 42, 42, 0.443);
 }
