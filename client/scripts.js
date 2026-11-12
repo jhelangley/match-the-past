@@ -296,7 +296,8 @@
     const renderRound = async () => {
         try {
             const events = await getEvents(currentLevel);
-            document.querySelector('#welcome-page')?.remove()
+            document.querySelector('#welcome-container')?.remove()
+            document.querySelector('#logo')?.remove()
             document.querySelectorAll('#game-buttons, #level-display-container, #game-window, #end-button').forEach(element => element.classList.remove('hidden'))
             
             

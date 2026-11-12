@@ -17,11 +17,16 @@ body {
 }
 
 #event-btn button {
+    width: 40px;
+    height: 40px;
     border: solid 1px black;
     border-radius: 50%;
     font-size: 15px;
-    padding: 10px;
     margin: 5px;
+}
+
+#event-btn button:hover {
+    background-color: rgba(165, 42, 42, 0.443);
 }
 
 .hidden {
@@ -313,7 +318,7 @@ table td, th {
     align-items: center;
     width: 500px;
     padding: 20px;
-    margin: 0 auto;
+    margin: 100px auto 0;
     border: 1px solid black;
     border-radius: 20px;
 }
@@ -368,3 +373,6 @@ table td, th {
     font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
 }
 
+#welcome-container ~ #top-bar h1 {
+    display: none;
+}
