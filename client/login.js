@@ -16,7 +16,7 @@ staffBtn.addEventListener("click", () => {
 
 document.getElementById("login-form").addEventListener("submit", async (e)=> {
     e.preventDefault()
-    const form = new FormData(document.getElementById('login-form'))
+    const form = new FormData(e.target)
     const options ={
         method: "POST",
         headers: {
