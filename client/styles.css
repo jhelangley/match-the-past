@@ -16,6 +16,14 @@ body {
     font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
 }
 
+#event-btn button {
+    border: solid 1px black;
+    border-radius: 50%;
+    font-size: 15px;
+    padding: 10px;
+    margin: 5px;
+}
+
 .hidden {
     visibility: hidden;
 }
@@ -108,6 +116,22 @@ table td, th {
 
 .my-navbar {
     background-color: #FFFDEE;
+    width: 70%;
+    text-align: right;
+    display: flex;
+    height: 30px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 0 0 18px 18px;
+    background-color: #fffdee79;
+    font-size: medium;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    gap: 6px;
+}
+
+#teacher-logout-btn {
+    margin: auto;
+    padding: 10px;
 }
 
 #login-btn{
@@ -233,7 +257,7 @@ table td, th {
 }
 
 #logout-btn{
-    margin-left: auto;
+    margin-right: auto;
 }
 
 #game-buttons button:hover{
