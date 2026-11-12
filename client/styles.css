@@ -257,7 +257,7 @@ table td, th {
 }
 
 #logout-btn{
-    margin-right: auto;
+    margin-left: auto;
 }
 
 #game-buttons button:hover{

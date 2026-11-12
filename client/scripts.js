@@ -23,7 +23,7 @@
         const token = localStorage.getItem('token')
         const username = localStorage.getItem('username')
 
-        const response = await fetch(`http://localhost:3001/users/${username}/score`, {
+        const response = await fetch(`http://localhost:3001/users/${username}/${currentLevel}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,11 +33,7 @@
         })
 
     }
-    
-    
-  
-    
-    
+
     // current level display
     const currentLevelText = document.querySelector('#current-level-text')
     

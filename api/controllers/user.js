@@ -32,9 +32,7 @@ async function login(req, res){
                 if (err){
                     throw new Error('Error in token generation')
                 }
-
-
-                res.status(200).json({success: true, token: token})
+                res.status(200).json({success: true, token: token, username: user.username})
             }
             jwt.sign(payload, process.env.SECRET_TOKEN, {expiresIn: 3600}, sendToken)
         } else {
@@ -44,7 +42,6 @@ async function login(req, res){
         res.status(401).json({ error: err.message })
     }
 }
-
 
 async function updateScore(req, res) {
     try {

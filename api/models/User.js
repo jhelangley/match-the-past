@@ -34,23 +34,19 @@ class User {
         return newUser
     }
 
-    async update(data) {
-        const currentScore = data.current_score
-        const response = await db.query(
-            'UPDATE user_table SET current_score = $1 WHERE user_id = $2 RETURNING *;',
-            [currentScore, this.id]
-        );
-
-        return new User(response.rows[0])
-    
-    }
-
     static async getAllStudents() {
     const response = await db.query(
         "SELECT username, current_score FROM user_table WHERE is_admin = false ORDER BY current_score DESC"
     )
-
     return response.rows
-}
+    }
+
+    async update(score) {
+        const response = await db.query(
+            'UPDATE user_table SET current_score = $1 WHERE user_id = $2 RETURNING *;',
+            [score, this.id]
+        );
+        return new User(response.rows[0])
+    }
 }
 module.exports = User

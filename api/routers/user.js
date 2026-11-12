@@ -6,9 +6,9 @@ const userController = require('../controllers/user')
 const userRouter = Router()
 
 userRouter.post('/register', userController.register)
-userRouter.post('/login', authenticator, userController.login)
-userRouter.get('/students', userController.getAllStudents)
-userRouter.get('/:username', userController.retrieveScore)
+userRouter.post('/login', userController.login)
+userRouter.get('/students', authenticator, userController.getAllStudents)
+userRouter.get('/:username', authenticator, userController.retrieveScore)
 userRouter.put('/:username/:score', authenticator, userController.updateScore)
 
 
