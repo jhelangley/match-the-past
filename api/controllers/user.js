@@ -60,6 +60,15 @@ async function updateScore(req, res) {
     }
 }
 
+async function getAllStudents(req, res) {
+    try {
+        const students = await User.getAllStudents()
+        res.status(200).json(students)
+    } catch (err) {
+        res.status(500).json({ error: err.message })
+    }
+}
+
 async function retrieveScore(req,res) {
     try {
         const username = req.params.username;
@@ -72,4 +81,4 @@ async function retrieveScore(req,res) {
     }
 }
 
-module.exports = { register, login, updateScore, retrieveScore }
+module.exports = { register, login, updateScore, getAllStudents, retrieveScore }
