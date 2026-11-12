@@ -8,6 +8,7 @@
     let currentLevel = 1;
     let currentUser = 'user';
     let gotHint = false
+    let roundIsPlaying = false;
     
     // GAME CONTROLS
     
@@ -262,7 +263,7 @@
         currentLevelText.innerText = currentLevel
     }
 
-    document.querySelector('#restart-from-one-button').addEventListener('click', () => resetFromOne())
+    document.querySelectorAll('.restart-from-one-button').forEach(button => button.addEventListener('click', () => resetFromOne()))
     
     // resume from last level
     const resume = async () => {
@@ -271,12 +272,14 @@
             throw new Error(`Failed to retrieve level: ${response.status}`)
         }
 
-    const score = await response.json()
-        currentLevel = score
-        renderRound(currentLevel)
+        const score = await response.json()
+        currentLevel = score.current_level
+        roundIsPlaying = true;
+
+        renderRound(currentLevel);
     }
 
-    document.querySelector('#resume-button').addEventListener('click', () => resume())
+    document.querySelectorAll('.resume-button').forEach(button => button.addEventListener('click', () => resume()))
 
     //get a hint
     const getHint = () => {
@@ -297,6 +300,10 @@
     const renderRound = async () => {
         try {
             const events = await getEvents(currentLevel);
+            document.querySelector('#welcome-page')?.remove()
+            document.querySelectorAll('#game-buttons, #level-display-container, #game-window, #end-button').forEach(element => element.classList.remove('hidden'))
+            
+            
             gotHint = false
 
             sortedArray = events.sortedArray;
@@ -308,7 +315,10 @@
         }
     };
     
-    renderRound();
+    if (roundIsPlaying) {
+        renderRound();
+    }
+    
     
     
     

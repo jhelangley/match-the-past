@@ -11,8 +11,27 @@
 <body>
     <div id="top-bar">
         <h1>The Past...in Order</h1>
-        <div id="game-buttons">
-            <button type="button" id="restart-from-one-button">Start new game from level 1</button>
+
+        <div id="welcome-page">
+            <p>Welcome to Match the Past, a history knowledge game where you have to order events chronologically.</p>
+            <h2>How To Play:</h2>
+            <ul>
+                <li>You'll be given a number of events with a small description of each one.</li>
+                <li>Your role is to move the cards into chronological order using the up or down button on each card.</li>
+                <li>Once you think you've got them in the correct order, click the 'check answers' button to see.</li>
+                <li>If you're right, you'll move onto the next level. </li>
+                <li>Each level will increase the number of dates you need to order.</li>
+                <br>
+            </ul>
+            <p>Ready to play? Choose from an option below...</p>
+            <button type="button" class="restart-from-one-button">Start new game from level 1</button>
+            <button type="button" class="resume-button">Resume game from level ()</round></button>
+        
+        </div>
+
+
+        <div id="game-buttons" class="hidden">
+            <button type="button" class="restart-from-one-button">Start new game from level 1</button>
             <button type="button" id="resume-button">Resume game from level ()</round></button>
             <button type="button" id="open-instructions">View instructions</button>
             <button type="button" id="save-button">Save progress</button>
@@ -20,12 +39,12 @@
             <button type ="button" id="logout-btn">Log Out</button>
         </div><br>
     </div>
-    <div id="level-display-container">
+    <div id="level-display-container" class="hidden">
         <p>Current level: <span id="current-level-text">()</span></p>
     </div>
-    <div id="game-window"></div>
+    <div id="game-window" class="hidden"></div>
     <ol id="correct-answer"></ol>
-    <div id="end-button">
+    <div id="end-button" class="hidden">
         <button id="check-button">Check answers</button>
         <button id="new-cards-button">Get new cards</button>
         <p id="success"></p>
