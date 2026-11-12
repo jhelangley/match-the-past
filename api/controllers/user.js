@@ -27,7 +27,7 @@ async function login(req, res){
             if (isAdmin != user.is_admin){
                 throw new Error("Incorrect account type")
             }
-            const payload = {username: user.name}
+            const payload = {username: user.username}
             const sendToken = (err, token)=>{
                 if (err){
                     throw new Error('Error in token generation')
@@ -59,4 +59,26 @@ async function updateScore(req, res) {
         res.status(404).json({error: err.message})
     }
 }
-module.exports = { register, login, updateScore }
+
+async function getAllStudents(req, res) {
+    try {
+        const students = await User.getAllStudents()
+        res.status(200).json(students)
+    } catch (err) {
+        res.status(500).json({ error: err.message })
+    }
+}
+
+async function retrieveScore(req,res) {
+    try {
+        const username = req.params.username;
+        const user = await User.getOneByUsername(username)
+        const score = user.current_score
+
+        res.status(200).json(score)
+    } catch (err) {
+        res.status(404).json({error: err.message})
+    }
+}
+
+module.exports = { register, login, updateScore, getAllStudents, retrieveScore }
