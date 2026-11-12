@@ -140,7 +140,9 @@
         
         card.querySelector(".event-name").textContent = event.title;
         card.querySelector(".event-description").textContent = event.description;
-        card.querySelector(".date.hidden").textContent = event.date;
+        card.querySelector(".date.hidden").textContent = new Date(event.date).toLocaleDateString("en-GB", {
+            day: "numeric", month: "long", year: "numeric"
+        })
         
         
         if (currentIndex == 0) {
