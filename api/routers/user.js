@@ -10,4 +10,6 @@ userRouter.post('/login', userController.login)
 
 userRouter.put('/:username/score', authenticator, userController.updateScore)
 
+userRouter.get('/students', authenticator, userController.getAllStudents)
+
 module.exports =  userRouter

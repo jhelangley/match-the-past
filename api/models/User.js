@@ -44,5 +44,13 @@ class User {
         return new User(response.rows[0])
     
     }
+
+    static async getAllStudents() {
+    const response = await db.query(
+        "SELECT username, current_score FROM user_table WHERE is_admin = false ORDER BY current_score DESC"
+    )
+
+    return response.rows
+}
 }
 module.exports = User
