@@ -4,10 +4,12 @@
   "description": "An educational game where the user must correctly order randomly selected historical events.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch index.js",
     "start": "node index.js",
-    "setup-db": "node ./database/setup.js"
+    "setup-db": "node ./api/database/setup.js",
+    "test-dev": "nodemon api/index.js",
+    "test": "jest --watchAll --detectOpenHandles --runInBand --verbose",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -29,5 +31,11 @@
     "jsonwebtoken": "^9.0.3",
     "pg": "^8.23.1",
     "uuid": "^9.0.0"
+  },
+
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "nodemon": "^3.0.1"
   }
 }
