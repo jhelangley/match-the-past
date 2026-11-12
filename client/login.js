@@ -13,12 +13,12 @@ staffBtn.addEventListener("click", () => {
     studentBtn.classList.remove("selected")
 })
 //adding stuff
-document.getElementById("login-btn").addEventListener("submit", async (e)=> {
+document.getElementById("login-btn").addEventListener("click", async (e)=> {
     e.preventDefault()
-    const form = new FormData(e.target)
+    const form = new FormData(document.getElementById("login-form"))
     const options ={
         method: "POST",
-        head: {
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
@@ -39,10 +39,10 @@ document.getElementById("login-btn").addEventListener("submit", async (e)=> {
     }
 })
 
-document.getElementById("register-btn").addEventListener("submit", async (e) => {
+document.getElementById("register-btn").addEventListener("click", async (e) => {
     e.preventDefault()
 
-    const form = new FormData(e.target)
+    const form = new FormData(document.getElementById("login-form"))
     const options = {
         method: "POST", 
         headers: {
