@@ -2,6 +2,7 @@ let selectedRole = false
 const studentBtn = document.getElementById("student-btn")
 const staffBtn = document.getElementById("staff-btn")
 
+
 studentBtn.addEventListener("click", () => {
     selectedRole = false
     studentBtn.classList.add("selected")
@@ -15,7 +16,7 @@ staffBtn.addEventListener("click", () => {
 
 document.getElementById("login-form").addEventListener("submit", async (e)=> {
     e.preventDefault()
-    const form = new FormData(e.target)
+    const form = new FormData(document.getElementById('login-form'))
     const options ={
         method: "POST",
         headers: {
@@ -30,6 +31,10 @@ document.getElementById("login-form").addEventListener("submit", async (e)=> {
     }
     const response = await fetch("http://localhost:3001/users/login", options)
     const data = await response.json()
+
+    console.log(response.status)
+    console.log(data)
+
     if (response.status == 200 && selectedRole == false) {
         localStorage.setItem("token", data.token)
         localStorage.setItem("username", data.username)

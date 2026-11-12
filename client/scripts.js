@@ -31,6 +31,7 @@
             body: JSON.stringify({ current_score: currentLevel })
         })
 
+    }
     
     
   
