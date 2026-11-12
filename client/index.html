@@ -17,19 +17,21 @@
             <button type="button" id="open-instructions">View instructions</button>
             <button type="button" id="save-button">Save progress</button>
             <button type="button" id="hint-button">Get a hint</button>
+            <button type ="button" id="logout-btn">Log Out</button>
         </div><br>
     </div>
     <div id="level-display-container">
-        <p>CURRENT LEVEL: <span id="current-level-text"></span></p>
+        <p>Current level: <span id="current-level-text">()</span></p>
     </div>
     <div id="game-window"></div>
     <ol id="correct-answer"></ol>
-    <button id="check-button">Check answers</button>
-    <button id="reset-button">Get new cards</button>
-    <p id="success"></p>
+    <div id="end-button">
+        <button id="check-button">Check answers</button>
+        <button id="reset-button">Get new cards</button>
+        <p id="success"></p>
+    </div>
     
-    
-    
+
     
     <!-- INSTRUCTIONS DIALOG -->
     <dialog id="instructions-dialog">
@@ -89,11 +91,15 @@
     <!-- EVENT CARD TEMPLATE-->
     <template id="event-card-template">
         <div class="event-card">
-            <h3 class="event-name"></h3>
-            <p class="event-description"></p>
-            <p class="date hidden"></p>
-            <button class="move-btn up">Move up</button>
-            <button class="move-btn down">Move down</button>
+            <div id="event-text">
+                <h3 class="event-name"></h3>
+                <p class="event-description"></p>
+                <p class="date hidden"></p>
+            </div>
+            <div id="event-btn">
+                <button class="move-btn up">Move up</button>
+                <button class="move-btn down">Move down</button>
+            </div>
         </div>
     </template>
     

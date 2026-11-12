@@ -6,20 +6,14 @@ body {
 }
 
 .event-card {
+    display: flex;
+    background-color: #FFFDEE80;
     border: solid 1px black;
-    margin: 10px;
+    margin: 10px auto;
     padding: 10px;
     width: 800px;
-    background-color: white;
-}
-
-#game-window {
-    border: solid 1px red;
-    height: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
+    border-radius: 10px;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
 }
 
 .hidden {
@@ -140,7 +134,6 @@ table td, th {
     background-color: rgba(165, 42, 42, 0.443);
 }
 
-
 #logo{
     width: 220px;
     height: 140px;
@@ -149,8 +142,7 @@ table td, th {
 #game-window{
     border: 1px solid black;
     border-radius: 30px;
-    background-color: #FFFDEE;
-    opacity: 30%;
+    background-color: #FFFDEE30;
 }
 
 #play-title{
@@ -164,23 +156,39 @@ table td, th {
     backdrop-filter: blur(8px);
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
 }
-
 
 #success-dialog {
     background-color: rgba(0, 255, 0, 0.5);
     backdrop-filter: blur(8px);
+    border-radius: 10px;
 }
 
 #failure-dialog {
     background-color: rgba(255, 0, 0, 0.5);
     backdrop-filter: blur(8px);
+    border-radius: 10px;
 }
 
 #level-display-container {
-    background: white;
+    box-sizing: border-box;
+    color: black;
+    background-color: #FFFDEE80;
+    border: 1px solid black;
+    border-radius: 15px;
+    height: 40px;
     width: 200px;
-    font-size: 36px;
+    font-size: 28px;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    margin-left: auto;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#level-display-container p{
+    margin: 0;
+    line-height: 38px;
 }
 
 #top-bar{
@@ -210,10 +218,12 @@ table td, th {
     background-color: #fffdee79;
     font-size: medium;
     font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    gap: 6px;
 }
 
 #game-buttons button{
-    flex: 1;
+    flex: 0 0 auto;
+    width: auto;
     height: 100%;
     border: 1px solid black;
     border-radius: 10px;
@@ -222,6 +232,54 @@ table td, th {
     font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
 }
 
+#logout-btn{
+    margin-left: auto;
+}
+
 #game-buttons button:hover{
     background-color: rgba(165, 42, 42, 0.443);
 }
+
+#level-display-container {
+    box-sizing: border-box;
+    color: black;
+    background-color: #FFFDEE80;
+    border: 1px solid black;
+    border-radius: 15px;
+    height: 40px;
+    width: 200px;
+    font-size: 28px;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    margin-left: auto;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#end-button{    
+    width: 250px;
+    border: 1px solid black;
+    border-radius: 18px;
+    background-color: #fffdee79;
+    font-size: medium;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+#end-button button{
+    flex: 0 0 auto;
+    width: auto;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #FFFDEE;
+    font-size: medium;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+
+#end-button button:hover{
+    background-color: rgba(165, 42, 42, 0.443);
+}
+
