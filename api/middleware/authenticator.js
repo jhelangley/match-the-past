@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 
 function authenticator(req, res, next){
-    const token = req.headers.authorization
+    const token = req.headers.authorization?.split(" ")[1]
 
     if (!token){
         return res.status(401).json({ error: 'No token provided' })}
@@ -18,4 +18,4 @@ function authenticator(req, res, next){
     }   
 }
 
-module.exports = {authenticator}
+module.exports = authenticator

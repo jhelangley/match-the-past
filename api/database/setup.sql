@@ -18,9 +18,6 @@ CREATE TABLE event_card(
     PRIMARY KEY(event_id)
 );
 
-INSERT INTO user_table (username, password, is_admin)
-VALUES ('admin', 'password123', 'true');
-
 INSERT INTO event_card(title, date, description)
 VALUES
     ('Richard III born', '1452-10-02', 'The future king was born at Fotheringhay Castle. His remains were rediscovered beneath a Leicester car park in 2012.'),
