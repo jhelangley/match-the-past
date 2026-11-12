@@ -27,14 +27,14 @@ async function login(req, res){
             if (isAdmin != user.is_admin){
                 throw new Error("Incorrect account type")
             }
-            const payload = {username: user.name}
+            const payload = {username: user.username}
             const sendToken = (err, token)=>{
                 if (err){
                     throw new Error('Error in token generation')
                 }
 
 
-                res.status(200).json({success: true, token: token})
+                res.status(200).json({success: true, token: token, username: user.username})
             }
             jwt.sign(payload, process.env.SECRET_TOKEN, {expiresIn: 3600}, sendToken)
         } else {

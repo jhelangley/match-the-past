@@ -13,13 +13,28 @@
     
     // save progress button
     const saveButton = document.querySelector('#save-button')
-    saveButton.addEventListener('click', (currentLevel) => saveProgress(currentLevel))
+    saveButton.addEventListener('click', () => saveProgress(currentLevel))
     
     // ENTER DB QUERY HERE IN THIS FUNCTION AND THEN WE CAN REUSE IT ON ANY SAVE PROGRESS BUTTONS AROUND THE GAME
     const saveProgress = async (currentLevel) => {
         // fetch request to update user score in db
-        console.log(`saving current level ${currentLevel} to user's account`)
-    }
+
+        const token = localStorage.getItem('token')
+        const username = localStorage.getItem('username')
+
+        const response = await fetch(`http://localhost:3001/users/${username}/score`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ current_score: currentLevel })
+        })
+
+    
+    
+  
+    
     
     // current level display
     const currentLevelText = document.querySelector('#current-level-text')
