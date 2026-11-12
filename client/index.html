@@ -8,36 +8,23 @@
     <title>The Past...in Order</title>
 </head>
 <body>
-    <div id="instructions">
-        <header>How to play:</header>
-            <ul>
-               <li>You will be given a number of events with a small description about each one</li>
-               <li>Your role is to order these into chronological order</li>
-               <li>Each level will increase the number of dates you have to order</li>
-            </ul>
-    </div>
-    <div id="game-buttons">
-        <button type="button" id="start-btn">Start game</button>
-        <button type="button" id="resume-btn">Resume game</button>
-    </div><br>
-
-    <h1>The Past...in Order</h1>
-    <p>card testing</p>
+    <h1 id="play-title">The Past...in Order</h1>
     <div id="game-window"></div>
-    <ol id="correct-answer"></ol>
-    <button id="check-btn">Check answers</button>
-    <button id="reset-btn">Reset</button>
-    <p id="success"></p>
-
-<template id="event-card-template">
-    <div class="event-card">
-        <h3 class="event-name"></h3>
-        <p class="event-description"></p>
-        <p class="date hidden"></p>
-        <button class="move-btn up">Move up</button>
-        <button class="move-btn down">Move down</button>
+    <div id="finish-btn">
+        <button id="check-btn">Check answers</button>
+        <button id="reset-btn">Reset</button>
+        <p id="success"></p>
     </div>
-</template>
+
+    <template id="event-card-template">
+        <div class="event-card">
+            <h3 class="event-name"></h3>
+            <p class="event-description"></p>
+            <p class="date hidden"></p>
+            <button class="move-btn up">Move up</button>
+            <button class="move-btn down">Move down</button>
+        </div>
+    </template>
     
 </body>
 </html>
