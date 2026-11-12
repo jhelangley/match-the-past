@@ -18,7 +18,7 @@ document.getElementById("login-btn").addEventListener("submit", async (e)=> {
     const form = new FormData(e.target)
     const options ={
         method: "POST",
-        head: {
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
@@ -32,6 +32,8 @@ document.getElementById("login-btn").addEventListener("submit", async (e)=> {
     const data = await response.json()
     if (response.status == 200) {
         localStorage.setItem("token", data.token)
+        localStorage.setItem("username", data.username)
+        
         window.location.assign("index.html")
         alert("Logged in!")
     } else {
