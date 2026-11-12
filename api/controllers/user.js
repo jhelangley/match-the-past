@@ -49,9 +49,9 @@ async function login(req, res){
 async function updateScore(req, res) {
     try {
         const username = req.params.username;
-        const data = req.body;
+        const score = req.params.score;
         const user = await User.getOneByUsername(username)
-        const updatedUser = await user.update(data)
+        const updatedUser = await user.update(score)
 
         res.status(200).json(updatedUser)
 
@@ -69,4 +69,16 @@ async function getAllStudents(req, res) {
     }
 }
 
-module.exports = { register, login, updateScore, getAllStudents }
+async function retrieveScore(req,res) {
+    try {
+        const username = req.params.username;
+        const user = await User.getOneByUsername(username)
+        const score = user.current_score
+
+        res.status(200).json(score)
+    } catch (err) {
+        res.status(404).json({error: err.message})
+    }
+}
+
+module.exports = { register, login, updateScore, getAllStudents, retrieveScore }
