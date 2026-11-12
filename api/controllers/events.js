@@ -1,5 +1,6 @@
 const Event = require('../models/Event')
 
+
 async function random(req, res) {
     try {
         const level = parseInt(req.params.level)
