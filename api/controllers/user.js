@@ -34,7 +34,7 @@ async function login(req, res){
                 }
 
 
-                res.status(200).json({success: true, token: token, username: user.username})
+                res.status(200).json({success: true, token: token})
             }
             jwt.sign(payload, process.env.SECRET_TOKEN, {expiresIn: 3600}, sendToken)
         } else {
