@@ -18,8 +18,29 @@ CREATE TABLE event_card(
     PRIMARY KEY(event_id)
 );
 
-INSERT INTO user_table (username, password, is_admin)
-VALUES ('admin', 'password123', 'true');
+INSERT INTO user_table (username, password, is_admin, current_score)
+VALUES 
+    ('admin', 'password123', 'true', 1),
+    ('john.smith', 'password', false, 7),
+    ('emma.johnson', 'password', false, 3),
+    ('oliver.brown', 'password', false, 9),
+    ('sophia.williams', 'password', false, 5),
+    ('james.jones', 'password', false, 2),
+    ('ava.taylor', 'password', false, 10),
+    ('william.davies', 'password', false, 6),
+    ('isabella.wilson', 'password', false, 4),
+    ('henry.evans', 'password', false, 8),
+    ('mia.thomas', 'password', false, 1),
+    ('george.roberts', 'password', false, 7),
+    ('charlotte.walker', 'password', false, 5),
+    ('noah.white', 'password', false, 3),
+    ('amelia.harris', 'password', false, 9),
+    ('leo.martin', 'password', false, 6),
+    ('grace.thompson', 'password', false, 2),
+    ('jack.clark', 'password', false, 10),
+    ('lily.lewis', 'password', false, 4),
+    ('ethan.robinson', 'password', false, 8),
+    ('ella.hall', 'password', false, 1);
 
 INSERT INTO event_card(title, date, description)
 VALUES

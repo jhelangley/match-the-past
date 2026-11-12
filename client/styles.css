@@ -1,23 +1,27 @@
 body {
     background-image: url(./assets/background.png);
     background-size: cover;
+    margin: 0;
+    padding: 0;
 }
 
 .event-card {
+    display: flex;
+    background-color: #FFFDEE80;
     border: solid 1px black;
-    margin: 10px;
+    margin: 10px auto;
     padding: 10px;
     width: 800px;
-    background-color: white;
+    border-radius: 10px;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
 }
 
-#game-window {
-    border: solid 1px red;
-    height: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
+#event-btn button {
+    border: solid 1px black;
+    border-radius: 50%;
+    font-size: 15px;
+    padding: 10px;
+    margin: 5px;
 }
 
 .hidden {
@@ -42,6 +46,8 @@ body {
     border-bottom: none;
     border-radius: 12px 12px 0 0;
     background-color: #fffdee79;
+    font-size: medium;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
 }
 
 .role-btn.selected {
@@ -50,6 +56,11 @@ body {
     margin-bottom: -1px;
     z-index: 1;
 }
+
+.role-btn:hover{
+    background-color: #FFFDEE;
+}
+
 
 #log-in {
     width: 100%;
@@ -63,11 +74,13 @@ body {
 #log-in header {
     text-align: center;
     font-size: large;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
     margin-bottom: 15px;
 }
 
 #login-form fieldset{
     border: none;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
 }
 
 #username{
@@ -103,34 +116,194 @@ table td, th {
 
 .my-navbar {
     background-color: #FFFDEE;
+    width: 70%;
+    text-align: right;
+    display: flex;
+    height: 30px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 0 0 18px 18px;
+    background-color: #fffdee79;
+    font-size: medium;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    gap: 6px;
 }
 
+#teacher-logout-btn {
+    margin: auto;
+    padding: 10px;
+}
+
+#login-btn{
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #FFFDEE;
+    font-size: medium;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+
+#register-btn{
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #FFFDEE;
+    font-size: medium;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+
+#register-btn:hover{
+    background-color: rgba(165, 42, 42, 0.443);
+}
+
+#login-btn:hover{
+    background-color: rgba(165, 42, 42, 0.443);
+}
+
+#logo{
+    width: 220px;
+    height: 140px;
+}
+
+#game-window{
+    border: 1px solid black;
+    border-radius: 30px;
+    background-color: #FFFDEE30;
+}
+
+#play-title{
+    color: white;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
 
 #instructions-dialog {
-    
     z-index: 1000;
-    
     background-color: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(8px);
-
-    
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
 }
-
 
 #success-dialog {
     background-color: rgba(0, 255, 0, 0.5);
     backdrop-filter: blur(8px);
+    border-radius: 10px;
 }
 
 #failure-dialog {
     background-color: rgba(255, 0, 0, 0.5);
     backdrop-filter: blur(8px);
+    border-radius: 10px;
 }
 
 #level-display-container {
-    background: white;
+    box-sizing: border-box;
+    color: black;
+    background-color: #FFFDEE80;
+    border: 1px solid black;
+    border-radius: 15px;
+    height: 40px;
     width: 200px;
-    font-size: 36px;
+    font-size: 28px;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    margin-left: auto;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
+
+#level-display-container p{
+    margin: 0;
+    line-height: 38px;
+}
+
+#top-bar{
+    display: flex;
+    width: 100%;
+}
+
+#top-bar h1{
+    width: 30%;
+    text-align: left;
+    color: white;
+    font-size: 40px;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    padding-left: 10px;
+    padding-top: 10px;
+    margin: 0;
+}
+
+#game-buttons{
+    width: 70%;
+    text-align: right;
+    display: flex;
+    height: 30px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 0 0 18px 18px;
+    background-color: #fffdee79;
+    font-size: medium;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    gap: 6px;
+}
+
+#game-buttons button{
+    flex: 0 0 auto;
+    width: auto;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #FFFDEE;
+    font-size: medium;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+
+#logout-btn{
+    margin-left: auto;
+}
+
+#game-buttons button:hover{
+    background-color: rgba(165, 42, 42, 0.443);
+}
+
+#level-display-container {
+    box-sizing: border-box;
+    color: black;
+    background-color: #FFFDEE80;
+    border: 1px solid black;
+    border-radius: 15px;
+    height: 40px;
+    width: 200px;
+    font-size: 28px;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    margin-left: auto;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#end-button{    
+    width: 250px;
+    border: 1px solid black;
+    border-radius: 18px;
+    background-color: #fffdee79;
+    font-size: medium;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+#end-button button{
+    flex: 0 0 auto;
+    width: auto;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #FFFDEE;
+    font-size: medium;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+
+#end-button button:hover{
+    background-color: rgba(165, 42, 42, 0.443);
+}
+
