@@ -7,7 +7,7 @@ const userRouter = Router()
 
 userRouter.post('/register', userController.register)
 userRouter.post('/login', userController.login)
-
+userRouter.get('/:username', userController.retrieveScore)
 userRouter.put('/:username/:score', authenticator, userController.updateScore)
 
 module.exports =  userRouter

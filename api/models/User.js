@@ -44,5 +44,6 @@ class User {
         return new User(response.rows[0])
     
     }
+
 }
 module.exports = User

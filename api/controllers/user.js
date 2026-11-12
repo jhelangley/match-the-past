@@ -59,4 +59,17 @@ async function updateScore(req, res) {
         res.status(404).json({error: err.message})
     }
 }
-module.exports = { register, login, updateScore }
+
+async function retrieveScore(req,res) {
+    try {
+        const username = req.params.username;
+        const user = await User.getOneByUsername(username)
+        const score = user.current_score
+
+        res.status(200).json(score)
+    } catch (err) {
+        res.status(404).json({error: err.message})
+    }
+}
+
+module.exports = { register, login, updateScore, retrieveScore }
