@@ -263,7 +263,21 @@
     
     // resume from last level
     const resume = async () => {
-    const response = await fetch(`http://localhost:${PORT}/users/${currentUser}`)
+
+        console.log("RESUME BUTTON CLICKED");
+            try {
+        const token = localStorage.getItem('token');
+        const username = localStorage.getItem('username');
+
+        if (!token || !username) {
+            throw new Error('No token or username found. Please log in.');
+        }
+        const response = await fetch(`http://localhost:${PORT}/users/${username}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
         if(!response.ok){
             throw new Error(`Failed to retrieve level: ${response.status}`)
         }
@@ -273,6 +287,9 @@
         roundIsPlaying = true;
 
         renderRound(currentLevel);
+    } catch (error) {
+        console.error(error);
+    }
     }
 
     document.querySelectorAll('.resume-button').forEach(button => button.addEventListener('click', () => resume()))
@@ -314,11 +331,5 @@
     if (roundIsPlaying) {
         renderRound();
     }
-    
-    
-    
-    
-    
-    
     
     

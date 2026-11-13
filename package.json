@@ -4,7 +4,7 @@
   "description": "An educational game where the user must correctly order randomly selected historical events.",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch index.js",
+    "dev": "node --watch ./api/index.js",
     "start": "node index.js",
     "setup-db": "node ./api/database/setup.js",
     "test-dev": "nodemon api/index.js",
