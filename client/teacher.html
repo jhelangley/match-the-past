@@ -37,24 +37,25 @@
   </div>
 </nav> <br>
 
-<template id='student-data-row'>
-  <tr>
-    <td class="student-firstname"></td>
-    <td class="student-lastname"></td>
-    <td>The Tudors</td>
-    <td class="current-level"></td>
-  </tr>
-</template>
-
-<table id="student-data">
+<div id="student-table">
+  <template id='student-data-row'>
     <tr>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Current topic</th>
-        <th>Current level</th>
+      <td class="student-firstname"></td>
+      <td class="student-lastname"></td>
+      <td>The Tudors</td>
+      <td class="current-level"></td>
     </tr>
-    
-</table>
+  </template>
+  <table id="student-data">
+      <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Current topic</th>
+          <th>Current level</th>
+      </tr>
+  </table>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

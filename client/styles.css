@@ -27,16 +27,16 @@ body {
 }
 
 #event-btn button {
+    width: 40px;
+    height: 40px;
     border: solid 1px black;
     border-radius: 50%;
     font-size: 15px;
-    padding: 10px;
     margin: 5px;
 }
 
 #event-btn button:hover {
-    background-color: #837f64ef;
-
+    background-color: rgba(165, 42, 42, 0.443);
 }
 
 .hidden {
@@ -177,7 +177,6 @@ table td, th {
     width: 220px;
     height: 140px;
 }
-
 #game-window{
     border: 1px solid black;
     border-radius: 30px;
@@ -322,6 +321,71 @@ table td, th {
     background-color: rgba(165, 42, 42, 0.443);
 }
 
+#welcome-container{
+    background-color: #FFFDEE80;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    padding: 20px;
+    margin: 100px auto 0;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+#welcome-page {
+    display: flex;
+    flex-direction: column;
+}
+
+#welcome-page p{
+    font-size: 20px;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+
+#welcome-page h2{
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+
+#welcome-page ul{
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+
+#welcome-buttons{
+    display:flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#welcome-page button{
+    flex: auto;
+    width: 200px;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #FFFDEE;
+    font-size: medium;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+
+#welcome-page button:hover{
+    background-color: rgba(165, 42, 42, 0.443);
+}
+#student-data th{
+    font-size: 20px;
+    font-weight: bold;
+}
+#student-data{
+    background-color: #FFFDEE80;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+
+#welcome-container ~ #top-bar h1 {
+    display: none;
+}
 #username-text {
     font-weight: bolder;
 }
