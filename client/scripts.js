@@ -6,9 +6,29 @@
     let sortedArray = [];
     let shuffledArray = [];
     let currentLevel = 1;
-    let currentUser = 'user';
+    let savedLevel = 1;
     let gotHint = false
     let roundIsPlaying = false;
+
+    // get and render user details
+    let currentUser = localStorage.getItem('username');
+    document.querySelector('#username-text').innerText = currentUser;
+    
+    const getLevel = async () => {
+        const response = await fetch(`http://localhost:${PORT}/users/${currentUser}`)
+            if(!response.ok){
+                throw new Error(`Failed to retrieve level: ${response.status}`)
+            }
+    
+            const score = await response.json()
+            savedLevel = score;
+            
+            document.querySelectorAll('.saved-level').forEach(element => element.innerText = savedLevel);
+        }
+    
+    getLevel();
+   
+   
     
     // GAME CONTROLS
     
@@ -19,7 +39,7 @@
     // ENTER DB QUERY HERE IN THIS FUNCTION AND THEN WE CAN REUSE IT ON ANY SAVE PROGRESS BUTTONS AROUND THE GAME
     const saveProgress = async (currentLevel) => {
         // fetch request to update user score in db
-
+        console.log('requested save')
         const token = localStorage.getItem('token')
         const username = localStorage.getItem('username')
 
@@ -31,7 +51,7 @@
             },
             body: JSON.stringify({ current_score: currentLevel })
         })
-
+        getLevel();
     }
 
     // current level display
@@ -76,6 +96,7 @@
         // as the level won't increase until start next level button is clicked
         
         saveProgress(currentLevel + 1);
+        getLevel();
     });
     
     // failure dialog
@@ -93,6 +114,7 @@
     
     failureSave.addEventListener("click", () => {
             saveProgress(currentLevel);
+            getLevel();
     });
     
     // DATA FETCHING
@@ -186,7 +208,7 @@
     const renderEvents = (events) => {
         const gameWindow = document.querySelector('#game-window')
         
-        // rendering correct answers at the bottom for testing purposes only -- DELETE THIS FOR PROD VERSION
+        // rendering correct answers in the success dialog
         const correctAnswer = document.querySelector('#correct-answer')
         
         gameWindow.innerHTML = ""
@@ -198,7 +220,9 @@
         // rendering correct answers at the bottom for testing purposes only -- DELETE THIS FOR PROD VERSION
         correctAnswer.innerHTML = "";
         sortedArray.forEach(event => {
-            correctAnswer.innerHTML += `<li>${event.title}</li>`
+            correctAnswer.innerHTML += `<li>${new Date(event.date).toLocaleDateString("en-GB", {
+                day: "numeric", month: "long", year: "numeric"
+            })} --- ${event.title}</li>`
         })
     }
     
@@ -283,7 +307,7 @@
         }
 
         const score = await response.json()
-        currentLevel = score.current_level
+        currentLevel = score
         roundIsPlaying = true;
 
         renderRound(currentLevel);
@@ -313,8 +337,9 @@
     const renderRound = async () => {
         try {
             const events = await getEvents(currentLevel);
-            document.querySelector('#welcome-page')?.remove()
-            document.querySelectorAll('#game-buttons, #level-display-container, #game-window, #end-button').forEach(element => element.classList.remove('hidden'))
+            document.querySelector('#welcome-container')?.remove()
+            document.querySelector('#logo')?.remove()
+            document.querySelectorAll('#game-buttons > .hidden, #level-display-container, #game-window, #end-button').forEach(element => element.classList.remove('hidden'))
             
             
             gotHint = false

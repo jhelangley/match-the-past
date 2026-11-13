@@ -1,3 +1,9 @@
+document.getElementById("teacher-logout-btn").addEventListener("click", () => {
+    localStorage.removeItem('token')
+    window.location.assign("login.html")
+    alert('Logged out')
+})
+
 const studentDataTable = document.querySelector('#student-data');
 
 const studentRowTemplate = document.querySelector('#student-data-row');

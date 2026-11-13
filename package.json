@@ -7,7 +7,7 @@
     "dev": "node --watch ./api/index.js",
     "start": "node index.js",
     "setup-db": "node ./api/database/setup.js",
-    "test-dev": "nodemon api/index.js",
+    "test-dev": "nodemon ./api/index.js",
     "test": "jest --watchAll --detectOpenHandles --runInBand --verbose",
     "coverage": "jest --coverage"
   },
