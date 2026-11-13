@@ -39,10 +39,6 @@ body {
     background-color: rgba(165, 42, 42, 0.443);
 }
 
-.hidden {
-    visibility: hidden;
-}
-
 #login-container{
     width: 400px;
     margin: 50px auto;
@@ -177,12 +173,25 @@ table td, th {
     width: 220px;
     height: 140px;
 }
+#game-playing{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+    gap: 12px;
+}
+
+#game-container{
+    max-width: 78%;
+}
 #game-window{
+    max-width: 100%;
     border: 1px solid black;
     border-radius: 30px;
     background-color: #FFFDEE30;
+    padding: 10px;
+    box-sizing: border-box;
 }
-
 #play-title{
     color: white;
     font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
@@ -246,7 +255,8 @@ table td, th {
 }
 
 #game-buttons{
-    width: 70%;
+    position: absolute; right: 0px;
+    width: auto;
     text-align: right;
     display: flex;
     height: 30px;
@@ -258,7 +268,6 @@ table td, th {
     font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
     gap: 6px;
 }
-
 #game-buttons button{
     flex: 0 0 auto;
     width: auto;
@@ -269,11 +278,9 @@ table td, th {
     font-size: medium;
     font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
 }
-
 #logout-btn{
     margin-left: auto;
 }
-
 #game-buttons button:hover{
     background-color: rgba(165, 42, 42, 0.443);
 }
@@ -294,22 +301,18 @@ table td, th {
 }
 
 #end-button{    
-    width: 250px;
+    width: 220px;
     border: 1px solid black;
     border-radius: 18px;
     background-color: #fffdee79;
     font-size: medium;
     font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 6px;
+    padding: 8px;
 }
-
 #end-button button{
-    flex: 0 0 auto;
     width: auto;
-    height: 100%;
+    height: auto;
     border: 1px solid black;
     border-radius: 10px;
     background-color: #FFFDEE;
@@ -351,7 +354,7 @@ table td, th {
     font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
 }
 
-#welcome-buttons{
+#welcome-page button{
     display:flex;
     flex-direction: row;
     gap: 10px;
@@ -386,6 +389,19 @@ table td, th {
 #welcome-container ~ #top-bar h1 {
     display: none;
 }
+
 #username-text {
+    padding-left: 20px;
+    padding-right: 20px;
     font-weight: bolder;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+#logged-in-as {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: "Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+
+.hidden {
+    display: none;
 }

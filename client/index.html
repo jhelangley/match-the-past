@@ -15,12 +15,12 @@
         
         <div id="game-buttons">
             <button type="button" class="restart-from-one-button hidden">Start new game from level 1</button>
-            <button type="button" class="hidden" id="resume-button">Resume game from level <span class="saved-level"></span></round></button>
+            <button type="button" class="hidden resume-button">Resume game from level <span class="saved-level"></span></round></button>
             <button type="button" class="hidden" id="open-instructions">View instructions</button>
             <button type="button" class="hidden" id="save-button">Save progress</button>
             <button type="button" class="hidden" id="hint-button">Get a hint</button>
 
-            <div><span>You are logged in as: </span><span id="username-text"></span></div>
+            <div><span id="logged-in-as">You are logged in as: </span><br><span id="username-text"></span></div>
             <button type ="button" id="logout-btn">Log Out</button>
         </div><br>
     </div>
@@ -44,11 +44,14 @@
     <div id="level-display-container" class="hidden">
         <p>Current level: <span id="current-level-text">()</span></p>
     </div>
-    <div id="game-window" class="hidden"></div>
-    <div id="end-button" class="hidden">
-        <button id="check-button">Check answers</button>
-        <button id="new-cards-button">Get new cards</button>
-        <p id="success"></p>
+    <div id="game-playing">
+        <div id="game-container">
+            <div id="game-window" class="hidden"></div>
+        </div>
+        <div id="end-button" class="hidden">
+            <button id="check-button">Check answers</button>
+            <button id="new-cards-button" >Get new cards</button>
+        </div>
     </div>
     
 

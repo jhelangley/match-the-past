@@ -293,7 +293,7 @@
         }
 
         const score = await response.json()
-        currentLevel = score.current_level
+        currentLevel = score
         roundIsPlaying = true;
 
         renderRound(currentLevel);
